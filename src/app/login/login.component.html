@@ -1,0 +1,46 @@
+
+<div class="row my-5">
+  <div class="col-md-5"></div>
+
+  <div class="col-md-2">
+    <h1 class="text-center">DESYTIM</h1>
+    <div class="well bs-component">
+      <form class="form-horizontal" (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+        <fieldset>
+          <legend class="text-center"></legend><!--Inicio de Sesión-->
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="form-control-sm"><i class="icon-user"></i></span>
+                <input class="form-control" type="text" placeholder="Usuario" name="name" [(ngModel)] = "user.name" #name="ngModel" required/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="form-control-sm"><i class="icon-key"></i></span>
+                <input class="form-control" type="password" placeholder="Contrase&ntilde;a" name="pass" [(ngModel)] = "user.pass" #pass="ngModel" required/>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <input class="form-control btn btn-primary" type="submit" value="Iniciar Sesión" [disabled]="estadoCarga"/>
+            </div>
+          </div>
+        </fieldset>
+        <div *ngIf="textError" class="form-group text-center">
+          <div class="col-md-12">
+            <div class="alert alert-danger small">{{textError}}</div>
+            <!--<p class="help-block small mark">{{textError}}</p>-->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-5"></div>
+</div>
