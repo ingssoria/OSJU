@@ -1,0 +1,48 @@
+<div class="col-md-12 my-4">
+  <div class="d-flex flex-row justify-content-end">
+    <!--<a [routerLink]="['/admin']" class="btn btn-default">Volver</a>-->
+    <a [routerLink]="['/unidadnegocio_create']" class="btn btn-success mx-2"><i class=" icon-plus"></i> Crear</a>
+    <a [routerLink]="['/unidadnegocio_delete']" class="btn btn-danger mx-2"><i class="icon-minus"></i> Eliminar</a>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Unidad de Negocio</th>
+          <th>Tipo</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let unidadnegocio of unidadesnegocio | async">
+          <td>{{unidadnegocio.nombreUnidadNegocio}}</td>
+          <td>{{unidadnegocio.tipoUnidadNegocio}}</td>
+          <td class="d-flex flex-row">
+            <a [routerLink]="['/unidadnegocio_edit/',unidadnegocio.idUnidadNegocio]" class="btn btn-info btn-sm"><i class="icon-edit"></i></a>
+            <input type="checkbox" class="form-control-lg w-50" style="height: 30px" [value] = "unidadnegocio.idUnidadNegocio">
+            <!--<a [routerLink]="['/unidadnegocio_delete/',unidadnegocio.idUnidadNegocio]" class="btn btn-danger"><i class="icon-deletefolder"></i></a>-->
+<!--<a role="button" class="btn btn-large btn-primary" (click)="ver(modal)" )>Abrir ventana modal</a>
+
+<!-- Modal / Ventana / Overlay en HTML -->
+<!--<div #modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Header</h4>
+    </div>
+    <div class="modal-body">
+        <p>Body</p>
+    </div>
+    <div class="modal-footer"></div>
+</div>-->
+
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

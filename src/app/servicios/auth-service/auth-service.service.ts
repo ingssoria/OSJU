@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Usuario } from "../../modelos/usuario.modelo";
 import 'rxjs/add/operator/map'
+import {UnidadNegocio} from "../../modelos/unidadnegocio.modelo";
 
 
 @Injectable()
@@ -19,6 +20,8 @@ export class AuthServiceService {
   private getDatos(data){
       if(data && data['token']){
           sessionStorage.setItem('token', data['token']);
+          sessionStorage.setItem('uNegocio', data['uNegocio']);
+          //console.log(sessionStorage);
           return true;
       }
       return false;
@@ -29,17 +32,17 @@ export class AuthServiceService {
       Observable.throw(msg);
   }
 
-  login(user: Usuario): Observable<boolean>{
-      let body = 'name=' + user.name + '&pass=' + user.pass;
+  login(user: Usuario, unidadNegocio: any): Observable<boolean>{
+      let body = 'name=' + user.name + '&pass=' + user.pass + '&un=' + unidadNegocio;
       let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
 
-      return this.http.post<boolean>(this.getUrl(/*'tokens'*/'login'), body, {headers : headers})
+      return this.http.post<boolean>(this.getUrl('tokens'), body, {headers : headers})
           .map((data) => this.getDatos(data));
   }
 
   logout(){
-      //localStorage.clear();
       sessionStorage.removeItem('token');
+      sessionStorage.removeItem('uNegocio');
   }
 
 }

@@ -26,6 +26,19 @@
               </div>
             </div>
           </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="form-control-sm"><i class="icon-office-building"></i></span>
+                <select class="form-control" placeholder="Unidad de Negocio" name="unidadnegocio" [(ngModel)] = "selectedUnidadNegocio" #unidadnegocio="ngModel" required>
+                  <option [value]="null">Unidad de Negocio</option>
+                  <option *ngFor="let unidadnegocio of unidadesnegocio | async" [value] = "unidadnegocio.idUnidadNegocio">{{unidadnegocio.nombreUnidadNegocio}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
           <div class="form-group">
             <div class="col-md-12">
               <input class="form-control btn btn-primary" type="submit" value="Iniciar Sesión" [disabled]="estadoCarga"/>
@@ -35,7 +48,6 @@
         <div *ngIf="textError" class="form-group text-center">
           <div class="col-md-12">
             <div class="alert alert-danger small">{{textError}}</div>
-            <!--<p class="help-block small mark">{{textError}}</p>-->
           </div>
         </div>
       </form>

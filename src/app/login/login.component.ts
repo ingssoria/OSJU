@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthServiceService } from "../servicios/auth-service/auth-service.service";
 import { Usuario } from "../modelos/usuario.modelo";
+import { UnidadNegocioService } from "../servicios/unidadnegocio.service";
+import { Observable } from "rxjs/Observable";
+import { UnidadNegocio } from "../modelos/unidadnegocio.modelo";
 
 @Component({
   selector: 'dti-login',
@@ -13,36 +16,33 @@ export class LoginComponent implements OnInit {
     user: Usuario = new Usuario();
     textError: string = '';
     estadoCarga: boolean = false;
+    unidadesnegocio: Observable<UnidadNegocio[]>;
+    selectedUnidadNegocio: any;
 
-  constructor(private authServ: AuthServiceService, private router: Router) { }
+    constructor(private authServ: AuthServiceService, private unidadNegocioServ: UnidadNegocioService, private router: Router) { }
 
-  ngOnInit() {
+    ngOnInit() {
       this.authServ.logout();
-  }
+      this.unidadesnegocio = this.unidadNegocioServ.getUnidadesNegocio();
+      //console.log(this.unidadesnegocio);
+    }
 
     login(){
 
         this.estadoCarga = true;
-
-        this.authServ.login(this.user)
+        this.authServ.login(this.user, this.selectedUnidadNegocio)
             .subscribe(
                 resultado => {
                     if(resultado === true){
-                        //console.log(resultado);
-                        //console.log(sessionStorage.getItem('token'));
-                        //localStorage.setItem('token', success['token'] );
-
                         this.router.navigateByUrl('/home');
                     }
                     else {
-                        this.textError = "Credenciales Incorectas !";
+                        this.textError = "Credenciales Incorrectas !";
                         this.estadoCarga = false;
                     }
                 },
-                error => {
-                    //console.log(error);
-
-                    this.textError = "Credenciales Incorectas !";
+                err => {
+                    this.textError = err.error.error.exception[0].message;
                     this.estadoCarga = false;
                 }
             );

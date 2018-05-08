@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="isLoged()">
-  <a class="navbar-brand" [routerLink]="['/home']">DESYTIM</a>
+  <a class="navbar-brand navbar-text" [routerLink]="['/home']">DESYTIM <span class="text-danger font-weight-bold">{{unidadNegocio.nombre}}</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,18 +7,18 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/']">Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['/home']">Inicio <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/home']">Administracion</a>
-      </li>
+      <!--<li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin']">Administracion</a>
+      </li>-->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Administracion
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="">Action</a>
-          <a class="dropdown-item" href="">Another action</a>
+          <a class="dropdown-item" [routerLink]="['/unidadnegocio_list']">Unidades de Negocio</a>
+          <a class="dropdown-item" [routerLink]="['/unidadnegocio']">Tipos de Unidades de Negocio</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="">Something else here</a>
         </div>
