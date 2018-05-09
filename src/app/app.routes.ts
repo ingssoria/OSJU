@@ -19,7 +19,7 @@ const appRoutes: Routes = [
     /**admin unidad negocio**/
     { path: 'unidadnegocio_list', component: AdminUnidadNegocioListComponent},
     { path: 'unidadnegocio_create', component: AdminUnidadNegocioCreateComponent},
-    { path: 'unidadnegocio_delete/:id', component: AdminUnidadNegocioDeleteComponent},
+    { path: 'unidadnegocio_delete', component: AdminUnidadNegocioDeleteComponent},
     { path: 'unidadnegocio_edit/:id', component: AdminUnidadNegocioEditComponent }
     /*{ path: 'adminuser', component: AdminuserComponent, children: adminuserRoutes, canActivate: [ AuthguardService ] },
     { path: 'geometria', component: GeometriaComponent },

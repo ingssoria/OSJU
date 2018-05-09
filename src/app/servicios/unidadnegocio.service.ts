@@ -38,6 +38,11 @@ export class UnidadNegocioService {
     return this.http.delete<UnidadNegocio>(this.getUrl("unidadnegocio")+"/"+id);
   }
 
+  deleteUnidadesNegocio(unidadesnogocio: UnidadNegocio[]): Observable<UnidadNegocio>{
+      return this.http.post<UnidadNegocio>(this.getUrl("deleteUN"), unidadesnogocio);
+      //return this.http.post<UnidadNegocio>(this.getUrl("unidadnegocio")+"/"+id);
+  }
+
   /*getOptions(): RequestOptions{
     let auth = new Headers({ 'Authorization' : 'Bearer ' + sessionStorage.getItem('token') });
     let options = new RequestOptions({ headers: auth });

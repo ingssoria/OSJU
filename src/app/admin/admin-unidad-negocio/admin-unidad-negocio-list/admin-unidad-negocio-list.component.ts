@@ -11,6 +11,7 @@ import {UnidadNegocioService} from "../../../servicios/unidadnegocio.service";
 export class AdminUnidadNegocioListComponent implements OnInit {
 
   unidadesnegocio: Observable<UnidadNegocio[]>;
+  selectedUnidadesNegocio: UnidadNegocio[] = [];
 
   constructor(private unidadNegocioServ: UnidadNegocioService) { }
 
@@ -18,4 +19,22 @@ export class AdminUnidadNegocioListComponent implements OnInit {
       this.unidadesnegocio = this.unidadNegocioServ.getUnidadesNegocio();
   }
 
-}
+    selectCheckbox(item:UnidadNegocio){
+        if(this.selectedUnidadesNegocio.find(x=>x==item))
+        {
+            this.selectedUnidadesNegocio.splice(this.selectedUnidadesNegocio.indexOf(item),1)
+        }
+        else{
+            this.selectedUnidadesNegocio.push(item);
+        }
+        //console.log(this.selectedUnidadesNegocio);
+    }
+
+
+    deleteUnidadNegocio() {
+        //console.log(this.selectedUnidadesNegocio);
+
+    }
+
+
+    }

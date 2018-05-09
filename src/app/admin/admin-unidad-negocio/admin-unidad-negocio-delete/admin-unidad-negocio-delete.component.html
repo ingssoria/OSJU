@@ -1,0 +1,21 @@
+<div class="col-md-10 col-md-offset-1">
+  <div class="well well bs-component">
+    <form novalidate class="form-horizontal" #delimgForm="ngForm"><!--(ngSubmit)="deleteUnidadNegocio(id)"-->
+      <fieldset>
+        <div class="text-danger font-weight-bold">Seguro que desea Eliminar</div>
+        <div class="text-secondary">Esta operacion es irreversible</div>
+        <div class="my-3">
+          <div *ngFor="let item of selectedUnidadesNegocio">
+            <span>Unidad de Negocio: </span><b>{{item.nombreUnidadNegocio}}</b>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-0">
+            <a class="btn btn-default" [routerLink]="['/unidadnegocio_list']">Cancelar</a>
+            <button (click)="deleteUnidadNegocio()" class="btn btn-primary btn-danger">Eliminar</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
